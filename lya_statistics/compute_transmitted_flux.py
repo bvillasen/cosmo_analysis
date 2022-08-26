@@ -59,7 +59,15 @@ F_mean       = lya_stats.attrs['Flux_mean_HI']
 k_vals_file  = lya_stats['power_spectrum']['k_vals'][...]
 ps_mean_file = lya_stats['power_spectrum']['p(k)'][...]
 indices = ps_mean_file > 0
-k_vals_file = k_vals[indices]
+k_vals_file = k_vals_file[indices]
 ps_mean_file = ps_mean_file[indices]
 file.close()
 
+
+# Compute the difference 
+k_diff = ( k_vals - k_vals_file ) / k_vals_file
+ps_diff = ( ps_mean - ps_mean_file ) / ps_mean_file
+
+
+print(f'Diff in k_vals:  {k_diff}\n')
+print(f'Diff in ps_mean: {ps_diff}\n')
