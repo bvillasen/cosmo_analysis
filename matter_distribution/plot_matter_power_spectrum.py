@@ -74,7 +74,7 @@ for i in range(2):
     
   ax = ax_l[i]
   
-  for snap_id in ps_data:
+  for snap_id in ps_data_all:
     ps_data = ps_data_all[snap_id]
     z = ps_data['z']
     k_vals = ps_data['k_vals']
