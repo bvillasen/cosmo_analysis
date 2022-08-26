@@ -5,7 +5,7 @@ root_dir = os.path.dirname(os.getcwd()) + '/'
 subDirectories = [x[0] for x in os.walk(root_dir)]
 sys.path.extend(subDirectories)
 from tools import *
-from load_skewers import load_skewers_multiple_axis
+from load_data import Load_Skewers_File, load_analysis_data
 from spectra_functions import Compute_Skewers_Transmitted_Flux
 from flux_power_spectrum import Compute_Flux_Power_Spectrum
 
