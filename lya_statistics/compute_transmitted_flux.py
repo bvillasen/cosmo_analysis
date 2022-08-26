@@ -45,10 +45,17 @@ cosmology['current_z'] = skewer_dataset['current_z']
 # skewers_ps = data_ps['skewers_ps']
 # ps_mean = data_ps['mean']
 
+#NOTE: This is the power spectrum! 
+#To compute the Dimensionless version multiply by k_vals and divide by np.pi
+
 
 #Compare with the Mean Flux Power Spectrum computed during the simulation run time
 file_name = analysis_dir + f'{file_id}_analysis.h5'
 file = h5.File( file_name, 'r' )
-
-
+lys_stats = file['lya_statistics']
+n_skewers = lya_statistics.attrs['n_skewers'] 
+F_mean = lya_statistics.attrs['Flux_mean_HI']
+k_vals_file = lya_stats['power_spectrum']['k_vals'][...]
+ps_mean_file = lya_stats['power_spectrum']['p(k)'][...]
+file.close()
 
