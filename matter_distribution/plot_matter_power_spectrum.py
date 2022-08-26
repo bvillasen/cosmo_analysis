@@ -17,8 +17,6 @@ input_dir  = base_dir + '256_50Mpc/snapshot_files/'
 output_dir = base_dir + 'figures/'
 create_directory( output_dir ) 
 
-input_dir = '/gpfs/alpine/ast175/scratch/bvilasen/cosmo_sims/256_50Mpc/snapshot_files/'
-
 
 data_type = 'particles'
 fields = [ 'density' ]
@@ -34,7 +32,7 @@ L_Mpc = Lbox * 1e-3    #Mpc/h
 nx, ny, nz = grid_size
 dx, dy, dz = Lbox/nx, Lbox/ny, Lbox/nz
 
-snapshots = range(1,5)
+snapshots = range(5)
 fields = [ 'density' ]
 
 data_type = 'particles'
