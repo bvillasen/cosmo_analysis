@@ -36,4 +36,4 @@ cosmology['Omega_L'] = skewer_dataset['Omega_L']
 cosmology['current_z'] = skewer_dataset['current_z']
 
 skewers_data = { field:skewer_dataset[field] for field in field_list }
-data_Flux = Compute_Skewers_Transmitted_Flux( skewers_data, cosmology, box, print_string=print_string )
+data_Flux = Compute_Skewers_Transmitted_Flux( skewers_data, cosmology, box  )
