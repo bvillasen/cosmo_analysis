@@ -10,19 +10,19 @@ from spectra_functions import Compute_Skewers_Transmitted_Flux
 from flux_power_spectrum import Compute_Flux_Power_Spectrum
 
 
-base_dir = '/gpfs/alpine/ast175/proj-shared/using_cholla/' 
-input_dir  = base_dir + 'simulations/256_50Mpc/skewers_files/'
-output_dir = base_dir + 'simulations/256_50Mpc/transmitted_flux_files/'
+base_dir = '/gpfs/alpine/ast175/proj-shared/using_cholla/'
+sim_dir = base_dir + 'simulations/256_50Mpc/' 
+skewers_dir  = sim_dir + 'skewers_files/'
+analysis_dir  = sim_dir + 'analysis_files/'
+output_dir = sim_dir + 'transmitted_flux_files/'
 create_directory( output_dir )
 
 
 axis_list = [ 'x', 'y', 'z' ]
-n_skewers_list = [ 'all', 'all', 'all']
-skewer_ids_list = [ 'all', 'all', 'all']
 field_list = [  'HI_density', 'los_velocity', 'temperature' ]
 
 file_id = 30
-skewer_dataset = Load_Skewers_File( file_id, input_dir, axis_list=axis_list, fields_to_load=field_list )
+skewer_dataset = Load_Skewers_File( file_id, skewers_dir, axis_list=axis_list, fields_to_load=field_list )
 
 #Box parameters
 Lbox = skewer_dataset['Lbox']#kpc/h
@@ -34,14 +34,21 @@ cosmology['H0'] = skewer_dataset['H0']
 cosmology['Omega_M'] = skewer_dataset['Omega_M']
 cosmology['Omega_L'] = skewer_dataset['Omega_L']
 cosmology['current_z'] = skewer_dataset['current_z']
+# 
+# skewers_data = { field:skewer_dataset[field] for field in field_list }
+# data_Flux = Compute_Skewers_Transmitted_Flux( skewers_data, cosmology, box  )
+# 
+# 
+# #Compute the flux power spectrum
+# data_ps = Compute_Flux_Power_Spectrum( data_Flux, d_log_k=0.1 )
+# k_vals = data_ps['k_vals']
+# skewers_ps = data_ps['skewers_ps']
+# ps_mean = data_ps['mean']
 
-skewers_data = { field:skewer_dataset[field] for field in field_list }
-data_Flux = Compute_Skewers_Transmitted_Flux( skewers_data, cosmology, box  )
+
+#Compare with the Mean Flux Power Spectrum computed during the simulation run time
+file_name = analysis_dir + f'{file_id}_analysis.h5'
+file = h5.File( file_name, 'r' )
 
 
-#Compute the flux power spectrum
-data_ps = Compute_Flux_Power_Spectrum( data_Flux, d_log_k=0.1 )
-k_vals = data_ps['k_vals']
-skewers_ps = data_ps['skewers_ps']
-ps_mean = data_ps['mean']
 
