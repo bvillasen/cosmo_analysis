@@ -66,11 +66,15 @@ ncols = 2
 fig_height = nrows * figure_width
 fig_width = ncols * figure_width
 fig, ax_l = plt.subplots(nrows=nrows, ncols=ncols, figsize=(fig_width, fig_height) )
-plt.subplots_adjust( hspace = 0.0, wspace=0.22)
+plt.subplots_adjust( hspace = 0.0, wspace=0.25)
 
 for i in range(2):
-  if i == 0: ps_data_all = ps_dm
-  if i == 1: ps_data_all = ps_hydro
+  if i == 0: 
+    ylabel = r'$P_\mathrm{DM}(k)$'
+    ps_data_all = ps_dm
+  if i == 1: 
+    ylabel = r'$P_\mathrm{gas}(k)$'
+    ps_data_all = ps_hydro
     
   ax = ax_l[i]
   
@@ -86,8 +90,8 @@ for i in range(2):
   ax.set_xscale('log')
   ax.set_yscale('log')
 
+  ax.set_ylabel(ylabel)
   ax.set_xlabel(r'$k$  [$h\, \mathrm{Mpc^{-1}}$]')
-  ax.set_ylabel(r'$P(k)$')
 
   ax.legend(frameon=False, loc=3, fontsize=8)
 
