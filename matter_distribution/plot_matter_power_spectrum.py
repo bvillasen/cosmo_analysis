@@ -12,8 +12,8 @@ from load_data import load_snapshot_data_distributed
 from power_spectrum_functions import get_power_spectrum
 
 
-base_dir = '/gpfs/alpine/ast175/proj-shared/using_cholla/simulations/' 
-input_dir  = base_dir + '256_50Mpc/snapshot_files/'
+base_dir = '/gpfs/alpine/ast175/proj-shared/using_cholla/' 
+input_dir  = base_dir + 'simulations/256_50Mpc/snapshot_files/'
 output_dir = base_dir + 'figures/'
 create_directory( output_dir ) 
 
