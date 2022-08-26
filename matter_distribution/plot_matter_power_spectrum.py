@@ -68,14 +68,17 @@ fig_width = ncols * figure_width
 fig, ax_l = plt.subplots(nrows=nrows, ncols=ncols, figsize=(fig_width, fig_height) )
 plt.subplots_adjust( hspace = 0.0, wspace=0.16)
 
+for i in range(2):
+  
+  ax = ax_l[i]
+  
+  ax.set_xscale('log')
+  ax.set_yscale('log')
 
-ax1.set_xscale('log')
-ax1.set_yscale('log')
+  ax.set_xlabel(r'$k$  [$h\, \mathrm{Mpc^{-1}}$]')
+  ax.set_ylabel(r'$P(k)$')
 
-ax1.set_xlabel(r'$k$  [$h\, \mathrm{Mpc^{-1}}$]')
-ax1.set_ylabel(r'$P(k)$')
-
-ax1.legend(frameon=False, loc=3, fontsize=8)
+  ax.legend(frameon=False, loc=3, fontsize=8)
 
 figure_name  = output_dir + 'power_spectrum.png'
 fig.savefig( figure_name, bbox_inches='tight', dpi=300, facecolor=fig.get_facecolor() )
