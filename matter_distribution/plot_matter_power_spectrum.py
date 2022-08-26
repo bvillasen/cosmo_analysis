@@ -30,7 +30,7 @@ precision = np.float64
 n_bins = 15
 L_Mpc = Lbox * 1e-3    #Mpc/h
 nx, ny, nz = grid_size
-dx, dy, dz = Lbox/nx, Lbox/ny, Lbox/nz
+dx, dy, dz = L_Mpc/nx, L_Mpc/ny, L_Mpc/nz
 
 snapshots = range(1)
 fields = [ 'density' ]
@@ -42,7 +42,7 @@ for snap_id in snapshots:
   snap_data = load_snapshot_data_distributed( data_type, fields,  snap_id, input_dir,  box_size, grid_size, precision  )
   z = snap_data['Current_z']
   density = snap_data['density']
-  power_spectrum, k_vals, n_in_bin = get_power_spectrum( density, Lbox, nx, ny, nz, dx, dy, dz,  n_kSamples=n_bins )
+  power_spectrum, k_vals, n_in_bin = get_power_spectrum( density, L_Mpc, nx, ny, nz, dx, dy, dz,  n_kSamples=n_bins )
   ps_dm[snap_id] = { 'z': z, 'k_vals': k_vals, 'power_spectrum':power_spectrum }
 
 
@@ -53,7 +53,7 @@ for snap_id in snapshots:
   snap_data = load_snapshot_data_distributed( data_type, fields,  snap_id, input_dir,  box_size, grid_size, precision  )
   z = snap_data['Current_z']
   density = snap_data['density']
-  power_spectrum, k_vals, n_in_bin = get_power_spectrum( density, Lbox, nx, ny, nz, dx, dy, dz,  n_kSamples=n_bins )
+  power_spectrum, k_vals, n_in_bin = get_power_spectrum( density, L_Mpc, nx, ny, nz, dx, dy, dz,  n_kSamples=n_bins )
   ps_hydro[snap_id] = { 'z': z, 'k_vals': k_vals, 'power_spectrum':power_spectrum }
 
 
