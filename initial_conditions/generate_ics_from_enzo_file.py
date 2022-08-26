@@ -42,8 +42,8 @@ n_boxes  = 16
 
 L_Mpc = int( Lbox / 1000)
 
-input_dir = data_dir + f'using_cholla/ics/ics_music/ics_{n_points}_{L_Mpc}Mpc_enzo/'
-output_dir = data_dir +  f'using_cholla/ics/ics_music/ics_{n_points}_{L_Mpc}Mpc/'
+input_dir = f'/gpfs/alpine/ast175/proj-shared/using_cholla/ics/ics_music/ics_{n_points}_{L_Mpc}Mpc_enzo/'
+output_dir = f'/gpfs/alpine/ast175/proj-shared/using_cholla/ics/ics_music/ics_{n_points}_{L_Mpc}Mpc/'
 
 create_directory( output_dir )
 output_dir += f'ics_{n_boxes}_z100/'
