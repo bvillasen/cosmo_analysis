@@ -24,7 +24,7 @@ n_skewers_list = [ 'all', 'all', 'all']
 skewer_ids_list = [ 'all', 'all', 'all']
 field_list = [  'HI_density', 'los_velocity', 'temperature' ]
 
-
-skewer_dataset = Load_Skewers_File( file_indx, input_dir, axis_list=axis_list, fields_to_load=field_list )
+file_id = 30
+skewer_dataset = Load_Skewers_File( file_id, input_dir, axis_list=axis_list, fields_to_load=field_list )
 current_z = skewer_dataset['current_z']
 
