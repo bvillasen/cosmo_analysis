@@ -51,10 +51,11 @@ cosmology['current_z'] = skewer_dataset['current_z']
 
 #Compare with the Mean Flux Power Spectrum computed during the simulation run time
 file_name = analysis_dir + f'{file_id}_analysis.h5'
+print( f'Loading File: {file_name}' )
 file = h5.File( file_name, 'r' )
 lys_stats = file['lya_statistics']
-n_skewers = lya_statistics.attrs['n_skewers'] 
-F_mean = lya_statistics.attrs['Flux_mean_HI']
+n_skewers = lya_stats.attrs['n_skewers'] 
+F_mean = lya_stats.attrs['Flux_mean_HI']
 k_vals_file = lya_stats['power_spectrum']['k_vals'][...]
 ps_mean_file = lya_stats['power_spectrum']['p(k)'][...]
 file.close()
