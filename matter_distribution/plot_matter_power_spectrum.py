@@ -43,7 +43,7 @@ for snap_id in snapshots:
   z = snap_data['Current_z']
   density = snap_data['density']
   power_spectrum, k_vals, n_in_bin = get_power_spectrum( density, Lbox, nx, ny, nz, dx, dy, dz,  n_kSamples=n_bins )
-  power_spectrum_dm[snap_id] = { 'z': z, 'k_vals': k_vals, 'power_spectrum':power_spectrum }
+  ps_dm[snap_id] = { 'z': z, 'k_vals': k_vals, 'power_spectrum':power_spectrum }
 
 
 # Compute Hydro power spectrum
@@ -54,7 +54,7 @@ for snap_id in snapshots:
   z = snap_data['Current_z']
   density = snap_data['density']
   power_spectrum, k_vals, n_in_bin = get_power_spectrum( density, Lbox, nx, ny, nz, dx, dy, dz,  n_kSamples=n_bins )
-  power_spectrum_hydro[snap_id] = { 'z': z, 'k_vals': k_vals, 'power_spectrum':power_spectrum }
+  ps_hydro[snap_id] = { 'z': z, 'k_vals': k_vals, 'power_spectrum':power_spectrum }
 
 
 
