@@ -35,8 +35,8 @@ n_boxes  = 8
 
 L_Mpc = int( Lbox / 1000)
 
-input_dir = data_dir + f'cosmo_sims/ics/enzo/wdm/{n_points}_hydro_{L_Mpc}Mpc_cdm/raw/'
-output_dir = data_dir + f'cosmo_sims/ics/wdm/{n_points}_{L_Mpc}Mpc_cdm/'
+input_dir = data_dir + f'using_cholla/ics/ics_music/ics_{n_points}_{L_Mpc}Mpc_enzo/'
+output_dir = data_dir +  f'using_cholla/ics/ics_music/ics_{n_points}_{L_Mpc}Mpc/'
 
 create_directory( output_dir )
 output_dir += f'ics_{n_boxes}_z100/'
