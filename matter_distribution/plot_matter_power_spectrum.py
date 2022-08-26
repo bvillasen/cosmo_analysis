@@ -69,8 +69,19 @@ fig, ax_l = plt.subplots(nrows=nrows, ncols=ncols, figsize=(fig_width, fig_heigh
 plt.subplots_adjust( hspace = 0.0, wspace=0.16)
 
 for i in range(2):
-  
+  if i == 0: ps_data_all = ps_dm
+  if i == 1: ps_data_all = ps_hydro
+    
   ax = ax_l[i]
+  
+  for snap_id in ps_data:
+    ps_data = ps_data_all[snap_id]
+    z = ps_data['z']
+    k_vals = ps_data['k_vals']
+    ps = ps_data['power_spectrum']
+    
+    label = r'$z=$' +f'{z:.1f}'
+    ax.plot( k_vals, ps, label=label )
   
   ax.set_xscale('log')
   ax.set_yscale('log')
