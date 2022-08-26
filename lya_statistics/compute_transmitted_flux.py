@@ -1,7 +1,7 @@
 import os, sys
 import numpy as np
 import h5py as h5
-root_dir = os.getcwd() + '/'
+root_dir = os.path.dirname(os.getcwd()) + '/'
 subDirectories = [x[0] for x in os.walk(root_dir)]
 sys.path.extend(subDirectories)
 from tools import *
