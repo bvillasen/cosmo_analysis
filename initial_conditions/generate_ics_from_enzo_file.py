@@ -28,10 +28,17 @@ if 'particles' in types: ics_particles = True
 
 
 
+# # Box Size
+# Lbox = 50000.0    #kpc/h
+# n_points = 256
+# n_boxes  = 8
+
+
 # Box Size
 Lbox = 50000.0    #kpc/h
-n_points = 256
-n_boxes  = 8
+n_points = 512
+n_boxes  = 16
+
 
 L_Mpc = int( Lbox / 1000)
 
