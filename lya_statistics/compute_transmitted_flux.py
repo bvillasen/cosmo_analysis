@@ -37,3 +37,11 @@ cosmology['current_z'] = skewer_dataset['current_z']
 
 skewers_data = { field:skewer_dataset[field] for field in field_list }
 data_Flux = Compute_Skewers_Transmitted_Flux( skewers_data, cosmology, box  )
+
+
+#Compute the flux power spectrum
+data_ps = Compute_Flux_Power_Spectrum( data_Flux, d_log_k=0.1 )
+k_vals = data_ps['k_vals']
+skewers_ps = data_ps['skewers_ps']
+ps_mean = data_ps['mean']
+
