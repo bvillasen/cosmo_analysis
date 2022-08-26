@@ -34,16 +34,16 @@ cosmology['H0'] = skewer_dataset['H0']
 cosmology['Omega_M'] = skewer_dataset['Omega_M']
 cosmology['Omega_L'] = skewer_dataset['Omega_L']
 cosmology['current_z'] = skewer_dataset['current_z']
-# 
-# skewers_data = { field:skewer_dataset[field] for field in field_list }
-# data_Flux = Compute_Skewers_Transmitted_Flux( skewers_data, cosmology, box  )
-# 
-# 
-# #Compute the flux power spectrum
-# data_ps = Compute_Flux_Power_Spectrum( data_Flux, d_log_k=0.1 )
-# k_vals = data_ps['k_vals']
-# skewers_ps = data_ps['skewers_ps']
-# ps_mean = data_ps['mean']
+
+skewers_data = { field:skewer_dataset[field] for field in field_list }
+data_Flux = Compute_Skewers_Transmitted_Flux( skewers_data, cosmology, box  )
+
+
+#Compute the flux power spectrum
+data_ps = Compute_Flux_Power_Spectrum( data_Flux, d_log_k=0.1 )
+k_vals = data_ps['k_vals']
+skewers_ps = data_ps['skewers_ps']
+ps_mean = data_ps['mean']
 
 #NOTE: This is the power spectrum! 
 #To compute the Dimensionless version multiply by k_vals and divide by np.pi
@@ -58,5 +58,8 @@ n_skewers    = lya_stats.attrs['n_skewers']
 F_mean       = lya_stats.attrs['Flux_mean_HI']
 k_vals_file  = lya_stats['power_spectrum']['k_vals'][...]
 ps_mean_file = lya_stats['power_spectrum']['p(k)'][...]
+indices = ps_mean_file > 0
+k_vals_file = k_vals[indices]
+ps_mean_file = ps_mean_file[indices]
 file.close()
 
