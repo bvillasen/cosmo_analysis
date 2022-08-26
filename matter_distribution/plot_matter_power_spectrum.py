@@ -32,16 +32,54 @@ L_Mpc = Lbox * 1e-3    #Mpc/h
 nx, ny, nz = grid_size
 dx, dy, dz = Lbox/nx, Lbox/ny, Lbox/nz
 
-snapshots = range(5)
+snapshots = range(1)
 fields = [ 'density' ]
 
+# Compute DM power spectrum
 data_type = 'particles'
-
 ps_dm = {}
 for snap_id in snapshots:
   snap_data = load_snapshot_data_distributed( data_type, fields,  snap_id, input_dir,  box_size, grid_size, precision  )
   z = snap_data['Current_z']
   density = snap_data['density']
-  # power_spectrum, k_vals, n_in_bin = get_power_spectrum( density, Lbox, nx, ny, nz, dx, dy, dz,  n_kSamples=n_bins )
-  # power_spectrum_all[snap_id][data_type][data_id] = { 'z': z, 'k_vals': k_vals, 'power_spectrum':power_spectrum }
+  power_spectrum, k_vals, n_in_bin = get_power_spectrum( density, Lbox, nx, ny, nz, dx, dy, dz,  n_kSamples=n_bins )
+  power_spectrum_dm[snap_id] = { 'z': z, 'k_vals': k_vals, 'power_spectrum':power_spectrum }
+
+
+# Compute Hydro power spectrum
+data_type = 'hydro'
+ps_hydro = {}
+for snap_id in snapshots:
+  snap_data = load_snapshot_data_distributed( data_type, fields,  snap_id, input_dir,  box_size, grid_size, precision  )
+  z = snap_data['Current_z']
+  density = snap_data['density']
+  power_spectrum, k_vals, n_in_bin = get_power_spectrum( density, Lbox, nx, ny, nz, dx, dy, dz,  n_kSamples=n_bins )
+  power_spectrum_hydro[snap_id] = { 'z': z, 'k_vals': k_vals, 'power_spectrum':power_spectrum }
+
+
+
+
+figure_width = 4
+text_color = 'black'  
+nrows = 1
+ncols = 2
+fig_height = nrows * figure_width
+fig_width = ncols * figure_width
+fig, ax_l = plt.subplots(nrows=nrows, ncols=ncols, figsize=(fig_width, fig_height) )
+plt.subplots_adjust( hspace = 0.0, wspace=0.16)
+
+
+ax1.set_xscale('log')
+ax1.set_yscale('log')
+
+ax1.set_xlabel(r'$k$  [$h\, \mathrm{Mpc^{-1}}$]')
+ax1.set_ylabel(r'$P(k)$')
+
+ax1.legend(frameon=False, loc=3, fontsize=8)
+
+figure_name  = output_dir + 'power_spectrum.png'
+fig.savefig( figure_name, bbox_inches='tight', dpi=300, facecolor=fig.get_facecolor() )
+print( f'Saved Figure: {figure_name}' )
+
+
 
