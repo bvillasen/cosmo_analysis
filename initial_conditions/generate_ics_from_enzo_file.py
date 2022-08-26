@@ -45,6 +45,9 @@ print(f'Input Dir: {input_dir}' )
 print(f'Output Dir: {output_dir}' )
 
 temperature = 231.44931976   #k
+H_fraction = 0.75984603480
+He_fraction = 1 - H_fraction
+mmw = 1 / ( H_fraction + He_fraction/4 )
 file_attrs = Load_File_Attrs( input_dir, Lbox=Lbox, type=types[0] )
 
 data_ics = { 'dm':{}, 'gas':{} }
@@ -57,7 +60,7 @@ if ics_hydro:
   gas_vel_y = Load_Gas_Field( 'vel_y', input_dir, attrs=file_attrs )
   gas_vel_z = Load_Gas_Field( 'vel_z', input_dir, attrs=file_attrs )
   print( 'Computing GasEnergy')
-  gas_U = get_internal_energy( temperature ) * gas_density
+  gas_U = get_internal_energy( temperature, mu=mmw ) * gas_density
   print( 'Computing Energy')
   gas_E = 0.5*gas_density*( gas_vel_x*gas_vel_x + gas_vel_y*gas_vel_y + gas_vel_z*gas_vel_z ) + gas_U
 
