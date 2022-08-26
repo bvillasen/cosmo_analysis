@@ -34,7 +34,7 @@ L_Mpc = Lbox * 1e-3    #Mpc/h
 nx, ny, nz = grid_size
 dx, dy, dz = Lbox/nx, Lbox/ny, Lbox/nz
 
-snapshots = range(5)
+snapshots = range(1,5)
 fields = [ 'density' ]
 
 data_type = 'particles'
