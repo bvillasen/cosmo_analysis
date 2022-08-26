@@ -32,7 +32,7 @@ L_Mpc = Lbox * 1e-3    #Mpc/h
 nx, ny, nz = grid_size
 dx, dy, dz = L_Mpc/nx, L_Mpc/ny, L_Mpc/nz
 
-snapshots = range(1)
+snapshots = range(5)
 fields = [ 'density' ]
 
 # Compute DM power spectrum
@@ -66,7 +66,7 @@ ncols = 2
 fig_height = nrows * figure_width
 fig_width = ncols * figure_width
 fig, ax_l = plt.subplots(nrows=nrows, ncols=ncols, figsize=(fig_width, fig_height) )
-plt.subplots_adjust( hspace = 0.0, wspace=0.16)
+plt.subplots_adjust( hspace = 0.0, wspace=0.22)
 
 for i in range(2):
   if i == 0: ps_data_all = ps_dm
