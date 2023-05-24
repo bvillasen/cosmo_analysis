@@ -15,7 +15,7 @@ class Cosmology:
     self.rho_crit =  3*(self.H0*1e-3)**2/(8*np.pi* Gcosmo) * Msun / (kpc*100)**3 #kg cm^-3
     self.rho_gas_mean = self.rho_crit * self.Omega_b / Msun * (kpc*100)**3  / self.h**2  #kg cm^-3
     self.z_start = z_start
-    self.n_points = 1000000
+    self.n_points = 10000000
     self.z_array = None
     self.a_array = None
     self.t_array = None
