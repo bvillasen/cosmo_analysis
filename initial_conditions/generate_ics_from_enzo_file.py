@@ -36,14 +36,14 @@ if 'particles' in types: ics_particles = True
 
 # Box Size
 Lbox = 50000.0    #kpc/h
-n_points = 512
-n_boxes  = 64
+n_points = 1024
+n_boxes  = 8
 
 
 L_Mpc = int( Lbox / 1000)
 
-input_dir = f'/gpfs/alpine/ast175/proj-shared/using_cholla/ics/ics_music/ics_{n_points}_{L_Mpc}Mpc_enzo/'
-output_dir = f'/gpfs/alpine/ast175/proj-shared/using_cholla/ics/ics_music/ics_{n_points}_{L_Mpc}Mpc/'
+input_dir = f'/home/bvillase/tests/cosmo_sims/ics/{n_points}_{L_Mpc}Mpc/raw/'
+output_dir = f'/home/bvillase/tests/cosmo_sims/ics/{n_points}_{L_Mpc}Mpc/'
 
 create_directory( output_dir )
 output_dir += f'ics_{n_boxes}_z100/'

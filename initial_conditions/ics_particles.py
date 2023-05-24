@@ -192,9 +192,9 @@ def generate_ics_particles( data_in, outDir, outputBaseName, proc_grid, box_size
   
   # print(( dx, dy, dz))
   print('Selecting local indices')
-  index_x = ( pos_x / dx ).astype(np.int)
-  index_y = ( pos_y / dy ).astype(np.int)
-  index_z = ( pos_z / dz ).astype(np.int)
+  index_x = ( pos_x / dx ).astype(int)
+  index_y = ( pos_y / dy ).astype(int)
+  index_z = ( pos_z / dz ).astype(int)
   indexs = index_x + index_y * proc_grid[0] + index_z*proc_grid[0]*proc_grid[1]
 
 
