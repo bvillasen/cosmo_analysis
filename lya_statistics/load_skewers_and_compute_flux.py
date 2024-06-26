@@ -16,12 +16,13 @@ snapshot_id = 1
 # The type of data to load. ['hydro', 'particles', 'gravity']
 data_type = 'hydro'
 
-# The fields to load 
-
 # Load 4x4 area across the z-axis, that will be converted into 16 skewers
+# The position of the skewers can be changed by changing the range of cells over the x an y axis
+# [0, -1] means load the entire length over this axis
 subgrid = [[100,104], [56,60], [0,-1]]
 precision = np.float64
 
+# The fields to load 
 # Since the skewers are along the z axis, we need momentum_z to compute LOS velocity
 fields_to_load = ['density', 'HI_density', 'temperature',  'momentum_z', ]
 
