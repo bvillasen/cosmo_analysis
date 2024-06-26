@@ -39,7 +39,7 @@ dm_density = data_dm['density']
 # Compute LOS velocity
 data_hydro['los_velocity'] = data_hydro['momentum_z'] / data_hydro['density'] 
 
-# Cosmology parameters
+# Cosmological parameters
 cosmology = {}
 cosmology['H0']        = data_hydro['H0']
 cosmology['Omega_M']   = data_hydro['Omega_M']
@@ -51,8 +51,8 @@ Lbox = data_hydro['domain'] #kpc/h
 box = {'Lbox':Lbox }
 
 
-field_list = [  'HI_density', 'los_velocity', 'temperature' ]
 # Flatten the 3D sub-volume into a 2D array of skewers
+field_list = [  'HI_density', 'los_velocity', 'temperature' ]
 data_skewers = {}
 for field in field_list:
   data_field = data_hydro[field]
@@ -62,10 +62,10 @@ for field in field_list:
   field_skewers = np.zeros( [n_skewers, skewers_length], dtype=precision )
   for i in range(nx):
     for j in range(ny):
-      field_skewers[i*ny+j,:] = data_field[i,j,:]
+      field_skewers[i*ny+j,:] = data_field[i,j,:] #This is only for skewers along the z-axis
   data_skewers[field] = field_skewers
 
-
+# Compute the Lya transmitted flux
 data_Flux = Compute_Skewers_Transmitted_Flux( data_skewers, cosmology, box  )
 skewers_vel_Hubble = data_Flux['vel_Hubble'] 
 skewers_transmitted_flux = data_Flux['skewers_Flux']
