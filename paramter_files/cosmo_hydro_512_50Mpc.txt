@@ -1,0 +1,45 @@
+#
+# Parameter File for the 3D Cosmological Hydrodynamics Simulation.
+#
+
+######################################
+# number of grid cells in the x dimension
+nx=512
+# number of grid cells in the y dimension
+ny=512
+# number of grid cells in the z dimension
+nz=512
+# output time
+tout=1000
+# how often to output
+outstep=1000
+# value of gamma
+gamma=1.66666667
+# name of initial conditions
+init=Read_Grid
+nfile=0
+#Cosmological Parameters 
+H0=67.66
+Omega_M=0.3111
+Omega_L=0.6889
+Omega_b=0.0497
+scale_outputs_file=/lustre/user/bvillase/benchmarcks/cholla/cosmology/256_50Mpc/output_a_values.txt
+# domain properties
+xmin=0.0
+ymin=0.0
+zmin=0.0
+xlen=50000.0
+ylen=50000.0
+zlen=50000.0
+# type of boundary conditions
+xl_bcnd=1
+xu_bcnd=1
+yl_bcnd=1
+yu_bcnd=1
+zl_bcnd=1
+zu_bcnd=1
+# path to output directory
+indir=/lustre/orion/ven114/scratch/bvilasen/benchmarks/cholla/cosmology/ics/512_50Mpc/ics_8_z100
+outdir=/lustre/orion/ven114/scratch/bvilasen/benchmarks/cholla/cosmology/512_50Mpc_n8/snapshot_files
+# UVB photoionization and photoheating rates
+UVB_rates_file=/ccs/home/bvilasen/code/cosmo_analysis/data/uvb_rates_V21.txt
