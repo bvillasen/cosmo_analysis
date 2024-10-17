@@ -23,7 +23,7 @@ H0=67.66
 Omega_M=0.3111
 Omega_L=0.6889
 Omega_b=0.0497
-scale_outputs_file=/lustre/user/bvillase/benchmarcks/cholla/cosmology/256_50Mpc/output_a_values.txt
+scale_outputs_file=/ccs/home/bvilasen/code/cosmo_analysis/scale_output_files/cosmo_z0_n1.txt
 # domain properties
 xmin=0.0
 ymin=0.0
