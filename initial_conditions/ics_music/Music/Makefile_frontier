@@ -15,7 +15,7 @@ OPT     = -Wall -Wno-unknown-pragmas -O3 -g -mtune=native
 CFLAGS  = 
 LFLAGS  = -lgsl -lgslcblas 
 CPATHS  = -I. -I$(FFTW_ROOT)/include -I$(OLCF_GSL_ROOT)/include/ -I$(HDF5_ROOT)/include
-LPATHS  = -L$(FFTW_ROOT)/lib -L$(OLCF_GSL_ROOT)lib/ -L$(HDF5_ROOT)/lib
+LPATHS  = -L$(FFTW_ROOT)/lib -L$(OLCF_GSL_ROOT)/lib/ -L$(HDF5_ROOT)/lib
 
 ##############################################################################
 # if you have FFTW 2.1.5 or 3.x with multi-thread support, you can enable the
