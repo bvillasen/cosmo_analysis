@@ -28,22 +28,17 @@ if 'particles' in types: ics_particles = True
 
 
 
-# # Box Size
-# Lbox = 50000.0    #kpc/h
-# n_points = 256
-# n_boxes  = 8
-
-
 # Box Size
 Lbox = 50000.0    #kpc/h
-n_points = 1024
+n_points = 512
 n_boxes  = 8
-
-
 L_Mpc = int( Lbox / 1000)
 
-input_dir = f'/home/bvillase/tests/cosmo_sims/ics/{n_points}_{L_Mpc}Mpc/raw/'
-output_dir = f'/home/bvillase/tests/cosmo_sims/ics/{n_points}_{L_Mpc}Mpc/'
+# base_dir = '/home/bvillase/benchmarks/cholla/cosmology/ics'
+# base_dir = '/lustre/user/bvillase/benchmarks/cholla/cosmology/ics'
+base_dir = '/lustre/orion/ven114/scratch/bvilasen/benchmarks/cholla/cosmology/ics'
+input_dir = f'/{base_dir}/{n_points}_{L_Mpc}Mpc/raw/'
+output_dir = f'{base_dir}/{n_points}_{L_Mpc}Mpc/'
 
 create_directory( output_dir )
 output_dir += f'ics_{n_boxes}_z100/'
@@ -98,6 +93,7 @@ if ics_particles:
 
 if n_boxes == 1: proc_grid  = [ 1, 1, 1 ]
 if n_boxes == 2: proc_grid  = [ 2, 1, 1 ]
+if n_boxes == 4: proc_grid  = [ 2, 2, 1 ]
 if n_boxes == 8: proc_grid  = [ 2, 2, 2 ]
 if n_boxes == 16: proc_grid = [ 4, 2, 2 ]
 if n_boxes == 32: proc_grid = [ 4, 4, 2 ]
