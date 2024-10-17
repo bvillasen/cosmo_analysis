@@ -20,7 +20,7 @@ cosmo_z = cosmo.z_vals
 cosmo_t = cosmo.t_vals / Myear / 1000 #Gyear
 
 Lbox = 50000.0    #kpc/h
-n_cells = 1024
+n_cells = 512
 L_Mpc = int(Lbox/1000)
 
 base_dir = f'/home/bvillase/tests/cosmo_sims/{n_cells}_{L_Mpc}Mpc/' 
@@ -34,7 +34,7 @@ fields = [ 'density' ]
 
 box_size = [ Lbox, Lbox, Lbox ]
 grid_size = [ n_cells, n_cells, n_cells ] #Size of the simulation grid
-n_slice = 400
+n_slice = 200
 subgrid = [[0,n_slice], [0,n_cells], [0,n_cells]]
 precision = np.float32
 
@@ -42,8 +42,6 @@ max_factor = 1e5
 dens_max = None
 vmin, vmax = np.inf, -np.inf
 
-
-# snapshots = [ 0, 20, 40, 60, 100, 200, 250,  339]
 snapshots = [ 2, 4, 10,  17]
 
 figs_data = {}

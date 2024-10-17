@@ -25,8 +25,10 @@ L_Mpc = int(Lbox/1000)
 
 base_dir = f'/home/bvillase/tests/cosmo_sims/{n_cells}_{L_Mpc}Mpc/' 
 input_dir  = base_dir + 'snapshot_files/'
+proj_dir = base_dir + 'projections/'
 output_dir = base_dir + 'figures/'
-# create_directory( output_dir ) 
+create_directory( proj_dir ) 
+create_directory( output_dir ) 
 
 
 data_type = 'particles'
@@ -42,22 +44,39 @@ max_factor = 1e5
 dens_max = None
 vmin, vmax = np.inf, -np.inf
 
+snapshots = [ 2, 5, 10,  17]
 
-# snapshots = [ 0, 20, 40, 60, 100, 200, 250,  339]
-snapshots = [ 2, 4, 10,  17]
+force_load_snap = False
 
 figs_data = {}
 for snap_id, n_snap in enumerate(snapshots):
-  snap_data = load_snapshot_data_distributed( data_type, fields, n_snap, input_dir,  box_size, grid_size, precision, subgrid=subgrid  )
-  z = snap_data['Current_z']
-  density = snap_data['density']
-  slice = density
-  dens_mean = density.mean()
-  if dens_max is None: dens_max = max_factor * dens_mean
-  density[density > dens_max] = dens_max
-  proj2 = (slice**2).sum( axis=0 )
-  proj  = slice.sum( axis=0 )
-  projection = proj2 / proj
+  file_name = proj_dir + f'projection_{n_snap}.h5'
+  if os.path.isfile(file_name) and not force_load_snap:
+    print( f'Loading file: {file_name}')
+    file = h5.File( file_name, 'r' )
+    z = file.attrs['z']
+    proj = file['proj'][...]
+    file.close()
+  
+  else:   
+    snap_data = load_snapshot_data_distributed( data_type, fields, n_snap, input_dir,  box_size, grid_size, precision, subgrid=subgrid  )
+    z = snap_data['Current_z']
+    density = snap_data['density']
+    slice = density
+    dens_mean = density.mean()
+    if dens_max is None: dens_max = max_factor * dens_mean
+    density[density > dens_max] = dens_max
+    proj2 = (slice**2).sum( axis=0 )
+    proj  = slice.sum( axis=0 )
+    proj2 = proj2 / proj
+    file = h5.File( file_name, 'w' )
+    file.attrs['z'] = z
+    file.create_dataset( 'proj', data=proj )
+    file.create_dataset( 'proj2', data=proj2 )
+    file.close()
+    print( f'Saved file: {file_name}')
+    
+  projection =  proj
   projection = np.log10(projection)
   vmax = max( vmax, projection.max() )
   vmin = min( vmin, projection.min() )
@@ -86,10 +105,13 @@ color_map = cmap_deep_r
 color_map = cmap_davos
 
 colormaps = [ cmap_deep_r, cmap_davos, cmap_oslo, cmap_lapaz, cmap_ice, cmap_turku, cmap_lajolla_r ]
+# colormaps = [ cmap_turku  ]
 
 
 figure_width = 6
-vmin *= 1.0
+
+
+
 
 for cmap_id, color_map in enumerate(colormaps):
 
@@ -110,6 +132,7 @@ for cmap_id, color_map in enumerate(colormaps):
     fig_data = figs_data[fig_id]
     projection = fig_data['proj']
     t = fig_data['t']
+    vmin = projection.min() 
     ax.imshow( projection, cmap=color_map, extent=[0, 50, 0, 50], vmin=vmin, vmax=vmax )
     # ax.imshow( projection, cmap=color_map, extent=[0, 50, 0, 50] )
 
@@ -126,5 +149,5 @@ for cmap_id, color_map in enumerate(colormaps):
     ax.set_xticks([])
 
   figure_name = output_dir + f'dm_density_{cmap_id}.png'
-  fig.savefig( figure_name, bbox_inches='tight', dpi=300, facecolor=fig.get_facecolor() )
+  fig.savefig( figure_name, bbox_inches='tight', dpi=500, facecolor=fig.get_facecolor() )
   print( f'Saved Figure: {figure_name}' )
