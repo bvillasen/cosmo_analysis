@@ -30,8 +30,8 @@ if 'particles' in types: ics_particles = True
 
 # Box Size
 Lbox = 50000.0    #kpc/h
-n_points = 512
-n_boxes  = 8
+n_points = 1024
+n_boxes  = 32
 L_Mpc = int( Lbox / 1000)
 
 # base_dir = '/home/bvillase/benchmarks/cholla/cosmology/ics'
