@@ -18,7 +18,7 @@ gamma=1.66666667
 # name of initial conditions
 init=Read_Grid
 nfile=0
-#Cosmological Parameters 
+#Cosmological Parameters
 H0=67.66
 Omega_M=0.3111
 Omega_L=0.6889
@@ -39,7 +39,7 @@ yu_bcnd=1
 zl_bcnd=1
 zu_bcnd=1
 # path to output directory
-indir=/lustre/orion/ven114/scratch/bvilasen/benchmarks/cholla/cosmology/ics/512_50Mpc/ics_8_z100
-outdir=/lustre/orion/ven114/scratch/bvilasen/benchmarks/cholla/cosmology/512_50Mpc_n8/snapshot_files
+indir=/lustre/orion/ven114/scratch/bvilasen/benchmarks/cholla/cosmology/ics/512_50Mpc/ics_8_z100/
+outdir=/lustre/orion/ven114/scratch/bvilasen/benchmarks/cholla/cosmology/512_50Mpc/snapshot_files/
 # UVB photoionization and photoheating rates
 UVB_rates_file=/ccs/home/bvilasen/code/cosmo_analysis/data/uvb_rates_V21.txt
